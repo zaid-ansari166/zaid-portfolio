@@ -21,22 +21,8 @@ const Tech = () => {
       </div>
     <div className='flex relative z-10 flex-col flex-wrap justify-center gap-10'>
       <div className=" flex flex-wrap gap-10 justify-center">
-      {technologies.slice(0,7).map((technology,index) => (
-        <div className='w-28 h-28 mt-5' key={technology.name}>
-          <Skills name={technology.name} icon={technology.icon} index={index} />
-        </div>
-      ))}
-      </div>
-      <div className=" flex flex-wrap gap-10 justify-center">
-      {technologies.slice(7,12).map((technology,index) => (
-        <div className='w-28 h-28 mt-5' key={technology.name}>
-          <Skills name={technology.name} icon={technology.icon} index={index} />
-        </div>
-      ))}
-      </div>
-      <div className=" flex flex-wrap gap-10 justify-center">
-      {technologies.slice(12).map((technology,index) => (
-        <div className='w-24 h-24 mt-5' key={technology.name}>
+      {technologies.map((technology,index) => (
+        <div className='w-28 mt-5' key={technology.name}>
           <Skills name={technology.name} icon={technology.icon} index={index} />
         </div>
       ))}

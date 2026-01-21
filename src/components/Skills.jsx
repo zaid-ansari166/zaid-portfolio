@@ -20,6 +20,9 @@ function Skills({ name, icon, index }) {
     setPosition({ x: 0, y: 0 });
   };
   const { x, y } = position;
+  // Add extra scale for WebRTC icon to compensate for padding in the image
+  const isWebRTC = name === "WebRTC";
+
   return (
     <motion.div variants={fadeIn("right", "spring", index * 0.2, 0.75)}>
       <motion.div ref={ref} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} animate={{ x, y }}
@@ -30,15 +33,16 @@ function Skills({ name, icon, index }) {
           mass: 0.1,
         }}>
         <div
-          className={` cursor-pointer `}
+          className={` cursor-pointer flex flex-col items-center gap-2`}
         >
           <img title={name}
             alt={name}
             width={85}
             height={85}
             src={icon.src}
-            className="  cursor-pointer object-cover"
+            className={`cursor-pointer object-cover ${isWebRTC ? 'scale-150 mt-5' : ''}`}
           />
+          <p className={`text-white text-center text-sm font-medium ${isWebRTC ? 'mt-2' : ''}`}>{name}</p> 
         </div>
       </motion.div>
     </motion.div>

@@ -27,6 +27,7 @@ import jwt from "./tech/jwt.svg";
 import nextauth from "./tech/nextauth.png";
 
 import meta from "./company/meta.png";
+import mataaf from "./mataaf.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
@@ -36,6 +37,7 @@ import jobit from "./jobit.png";
 import inkSync from "./ink.png";
 import tracker from "./tracker.png";
 import socialSphere from "./socialSphere.png";
+import aIchatbot from "./aIchatbot.png";
 
 export {
   logo,
@@ -60,6 +62,7 @@ export {
   typescript,
   threejs,
   meta,
+  mataaf,
   shopify,
   starbucks,
   tesla,
@@ -68,6 +71,7 @@ export {
   inkSync,
   tracker,
   socialSphere,
+  aIchatbot,
   nextjs,
   express,
   java,

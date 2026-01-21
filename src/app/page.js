@@ -1,4 +1,4 @@
-import { About, Contact, Hero, Navbar, Tech, Works } from "@/components";
+import { About, Contact, Hero, Navbar, Tech, Experience, Education, Works } from "@/components";
 import dynamic from "next/dynamic";
 
 export default function Home() {
@@ -13,6 +13,8 @@ export default function Home() {
           <div className=" overflow-hidden">
             <Tech />
           </div>
+          <Experience />
+          <Education />
           <Works />
           <Contact />
         </div>

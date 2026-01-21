@@ -49,11 +49,7 @@ const About = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className='mt-4 text-secondary text-[18px] max-w-3xl leading-[30px] font-semibold'
         >
-          I'm a skilled software developer with experience in TypeScript and
-          JavaScript, and expertise in frameworks like React, Node.js, and
-          Three.js. I'm a quick learner and collaborate closely with clients to
-          create efficient, scalable, and user-friendly solutions that solve
-          real-world problems. Let's work together to bring your ideas to life!
+          A results-driven Full Stack Developer with 2+ years of professional experience specializing in the MERN & MEAN stacks. Proven ability in designing, developing, and deploying scalable web and mobile applications. Passionate about leveraging modern technologies like WebRTC for real-time communication, and Microservices to build robust, high-performance systems. A collaborative team player dedicated to writing clean, efficient code and delivering exceptional user experiences.
         </motion.p>
         <Image src={color_sharp} alt="color-sharp" className="absolute z-[-1] h-80 -left-60 w-screen -top-20" />
         <Image src={astronaut} alt="astronaut" className="absolute z-[-1] h-80 -right-20 animation top-28" />
