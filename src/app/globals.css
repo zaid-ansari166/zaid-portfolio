@@ -274,6 +274,24 @@
 
 
 
+#tubes-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+#tubes-cursor-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .sliderContainer{
   position: absolute;
   top: calc(100vh - 350px);

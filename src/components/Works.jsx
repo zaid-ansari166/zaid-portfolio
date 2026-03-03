@@ -109,12 +109,19 @@ const ProjectCard = ({
                 </button>
               </>
             ) : website_url ? (
-              <iframe
-                src={website_url}
-                alt='project_website'
-                className='h-full w-full object-cover rounded-2xl aspect-video'
-                allowFullScreen
-              />
+              <>
+                <iframe
+                  src={website_url}
+                  alt='project_website'
+                  className='hidden lg:block h-full w-full object-cover rounded-2xl aspect-video'
+                  allowFullScreen
+                />
+                <img
+                  src={image.src}
+                  alt='project_image'
+                  className='lg:hidden h-full w-full object-cover rounded-2xl'
+                />
+              </>
             ) : (
               <img
                 src={image.src}

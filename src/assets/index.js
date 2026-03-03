@@ -35,9 +35,9 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import inkSync from "./ink.png";
-import tracker from "./tracker.png";
 import socialSphere from "./socialSphere.png";
 import aIchatbot from "./aIchatbot.png";
+import image from "./image.png";
 
 export {
   logo,
@@ -69,7 +69,6 @@ export {
   carrent,
   jobit,
   inkSync,
-  tracker,
   socialSphere,
   aIchatbot,
   nextjs,
@@ -77,4 +76,5 @@ export {
   java,
   jwt,
   nextauth,
+  image,
 };

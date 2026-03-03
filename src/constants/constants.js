@@ -17,7 +17,6 @@ import {
   carrent,
   jobit,
   inkSync,
-  tracker,
   threejs,
   nextjs,
   express,
@@ -28,6 +27,7 @@ import {
   aIchatbot,
   meta,
   mataaf,
+  image,
 } from "../assets";
 
 // Additional skill imports - add these after you add the icon files
@@ -331,7 +331,36 @@ const projects = [
       },
     ],
     image: aIchatbot,
-    source_code_link: "https://github.com/zaidansari",
+    source_code_link: "https://github.com/zaid-ansari166",
+  },
+  {
+    name: "MataafPOS – Point of Sale App",
+    description:
+      "MataafPOS is a mobile point-of-sale application designed to simplify business operations for small and medium businesses. Built with React Native and Firebase, the app enables merchants to manage sales, print bills using thermal printers, and track business performance — all from their phone. With an intuitive interface similar to Ezo POS, MataafPOS streamlines billing, inventory management, and daily operations, making it easier for business owners to focus on growing their business.",
+    features: [
+      "Fast and intuitive billing system with thermal printer support",
+      "Real-time inventory and stock management",
+      "Sales tracking and business analytics dashboard",
+      "Firebase-powered backend for reliable data sync across devices",
+      "Offline support for uninterrupted business operations",
+      "Easy product catalog management with categories and variants",
+    ],
+    tags: [
+      {
+        name: "React Native",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Firebase",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Thermal Printing",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: image,
+    download_link: "https://play.google.com/store/apps/details?id=com.mataaftech.mataafpos",
   },
 ];
 

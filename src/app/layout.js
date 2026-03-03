@@ -3,6 +3,11 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import SmoothScroll from "@/components/SmoothScroll";
+import dynamic from "next/dynamic";
+
+const TubesCursor = dynamic(() => import("@/components/TubesCursor"), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +33,7 @@ export default function RootLayout({ children }) {
       </Script>
       <SmoothScroll />
       <body className={inter.className}>
+        <TubesCursor />
         <Toaster />
         {children}
       </body>
