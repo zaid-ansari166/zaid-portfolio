@@ -5,6 +5,7 @@ import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
+import ErrorBoundary from "./ErrorBoundary";
 import { SectionWrapper } from "./hoc";
 import { slideIn } from "../utils/motion";
 import { toast } from "react-hot-toast";
@@ -30,7 +31,6 @@ const Contact = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log('Service ID: ', process.env.MAIL_PASS);
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       toast.error("Please fill all the fields.");
@@ -77,61 +77,68 @@ const Contact = () => {
     }
   };
 
+  const inputClass =
+    "glass py-4 px-6 placeholder:text-secondary text-ink rounded-xl outline-none font-medium focus:border-accent-cyan/60 transition-colors";
+
   return (
     <div
       className={`xl:mt-12 flex xl:flex-row flex-col gap-10 overflow-hidden`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 bg-opacity-80 p-8 rounded-2xl'
+        className='flex-[0.75] glass-card rounded-3xl p-8'
       >
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <p className="mt-3 text-secondary text-[16px] max-w-md leading-[26px]">
+          Have a project, an AI idea, or a role in mind? Drop me a message — I
+          usually reply within a day.
+        </p>
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
+          className='mt-10 flex flex-col gap-6'
         >
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Name</span>
+            <span className='text-ink font-medium mb-3'>Your Name</span>
             <input
               type='text'
               name='name'
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className={inputClass}
             />
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email</span>
+            <span className='text-ink font-medium mb-3'>Your email</span>
             <input
               type='email'
               name='email'
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              placeholder="What's your email address?"
+              className={inputClass}
             />
           </label>
           <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message</span>
+            <span className='text-ink font-medium mb-3'>Your Message</span>
             <textarea
               rows={7}
               name='message'
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className={inputClass}
             />
           </label>
 
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl hover:bg-purple-950 outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            className='inline-flex items-center justify-center gap-2 py-3.5 px-10 rounded-full outline-none w-fit text-white font-bold bg-gradient-to-r from-accent-violet via-accent-purple to-accent-cyan bg-[length:200%_auto] hover:bg-[position:right_center] transition-all duration-500 shadow-glow'
           >
-            {loading ? "Sending..." : "Send"}
+            {loading ? "Sending..." : "Send Message"}
           </button>
         </form>
       </motion.div>
@@ -140,7 +147,9 @@ const Contact = () => {
         variants={slideIn("right", "tween", 0.2, 1)}
         className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
       >
-        <EarthCanvas />
+        <ErrorBoundary fallback={null}>
+          <EarthCanvas />
+        </ErrorBoundary>
       </motion.div>
     </div>
   );

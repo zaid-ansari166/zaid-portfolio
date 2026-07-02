@@ -1,53 +1,53 @@
-import {
-  mobile,
-  backend,
-  web,
-  javascript,
-  typescript,
-  html,
-  css,
-  reactjs,
-  redux,
-  tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  docker,
-  carrent,
-  jobit,
-  inkSync,
-  threejs,
-  nextjs,
-  express,
-  java,
-  jwt,
-  nextauth,
-  socialSphere,
-  aIchatbot,
-  meta,
-  mataaf,
-  image,
-} from "../assets";
+import { carrent, jobit, inkSync, aIchatbot, image, mataaf } from "../assets";
+import pixo from "../assets/pixo.png";
 
-// Additional skill imports - add these after you add the icon files
-import reactnative from "../assets/tech/reactnative.png";
-import angular from "../assets/tech/angular.png";
-import nestjs from "../assets/tech/nestjs.png";
-import postgresql from "../assets/tech/postgresql.png";
-import sql from "../assets/tech/sql.png";
-import webrtc from "../assets/tech/webrtc.png";
-import socketio from "../assets/tech/socketio.png";
-import aws from "../assets/tech/aws.png";
-import cicd from "../assets/tech/cicd.png";
-import restapi from "../assets/tech/restapi.png";
-import microservices from "../assets/tech/microservices.png";
-import bootstrap from "../assets/tech/bootstrap.png";
+// Brand / tech icons (react-icons keeps them crisp at any size)
+import {
+  SiOpenai,
+  SiPython,
+  SiVercel,
+  SiReact,
+  SiNextdotjs,
+  SiAngular,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiRedux,
+  SiBootstrap,
+  SiHtml5,
+  SiCss3,
+  SiNodedotjs,
+  SiNestjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiWebrtc,
+  SiSocketdotio,
+  SiJsonwebtokens,
+  SiDocker,
+  SiAmazon,
+  SiGit,
+  SiFigma,
+  SiPostman,
+} from "react-icons/si";
+import {
+  FaRobot,
+  FaBrain,
+  FaServer,
+  FaCubes,
+  FaInfinity,
+  FaMobileAlt,
+} from "react-icons/fa";
+import { ClaudeIcon, GeminiIcon, HuggingFaceIcon } from "../components/icons/AiIcons";
 
 export const navLinks = [
   {
     id: "about",
     title: "About",
+  },
+  {
+    id: "skills",
+    title: "Skills",
   },
   {
     id: "work",
@@ -59,129 +59,106 @@ export const navLinks = [
   },
 ];
 
-const services = [
-  {
-    title: "Frontend Developer",
-    icon: web,
-  },
-  {
-    title: "Backend Developer",
-    icon: mobile,
-  },
-  {
-    title: "Programmer",
-    icon: backend,
-  },
-  // {
-  //   title: "Creator",
-  //   icon: creator,
-  // },
+// Quick-glance stats shown in the hero
+const stats = [
+  { value: "3+", label: "Years Experience" },
+  { value: "12+", label: "Projects Shipped" },
+  { value: "6+", label: "AI Integrations" },
+  { value: "4", label: "Apps on Play Store" },
 ];
 
-const technologies = [
+// "What I do" cards
+const services = [
   {
-    name: "React Native",
-    icon: reactjs,
+    title: "AI Engineering",
+    Icon: FaBrain,
+    color: "#e879f9",
+    description:
+      "Integrating LLMs (GPT, Claude, Gemini), building RAG pipelines, chatbots & AI-powered features.",
   },
   {
-    name: "React JS",
-    icon: reactjs,
+    title: "Full Stack Web",
+    Icon: SiReact,
+    color: "#22d3ee",
+    description:
+      "Scalable MERN & MEAN apps with React, Next.js, Angular, Node.js, NestJS & Express.",
   },
   {
-    name: "Next JS",
-    icon: nextjs,
+    title: "Mobile Apps",
+    Icon: FaMobileAlt,
+    color: "#915EFF",
+    description:
+      "Cross-platform iOS & Android apps with React Native — shipped & live on the Play Store.",
   },
   {
-    name: "Angular",
-    icon: angular,
+    title: "Real-time & Cloud",
+    Icon: FaServer,
+    color: "#3b82f6",
+    description:
+      "WebRTC, Socket.io, microservices, Docker, CI/CD & AWS deployments built to scale.",
+  },
+];
+
+// Skills grouped by category for the glass skills panels
+const skillGroups = [
+  {
+    title: "AI / ML",
+    accent: "#e879f9",
+    skills: [
+      { name: "OpenAI (GPT)", Icon: SiOpenai, color: "#10a37f" },
+      { name: "Claude", Icon: ClaudeIcon, color: "#D97757" },
+      { name: "Gemini", Icon: GeminiIcon, color: "#4285F4" },
+      { name: "Hugging Face", Icon: HuggingFaceIcon, color: "#FFD21E" },
+      { name: "Vercel AI SDK", Icon: SiVercel, color: "#ffffff" },
+      { name: "Python", Icon: SiPython, color: "#3776AB" },
+      { name: "Prompt Engineering", Icon: FaBrain, color: "#e879f9" },
+      { name: "Chatbots & RAG", Icon: FaRobot, color: "#22d3ee" },
+    ],
   },
   {
-    name: "Node JS",
-    icon: nodejs,
+    title: "Frontend",
+    accent: "#22d3ee",
+    skills: [
+      { name: "React", Icon: SiReact, color: "#61DAFB" },
+      { name: "Next.js", Icon: SiNextdotjs, color: "#ffffff" },
+      { name: "React Native", Icon: SiReact, color: "#61DAFB" },
+      { name: "Angular", Icon: SiAngular, color: "#DD0031" },
+      { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
+      { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+      { name: "Tailwind CSS", Icon: SiTailwindcss, color: "#38BDF8" },
+      { name: "Redux", Icon: SiRedux, color: "#764ABC" },
+      { name: "Bootstrap", Icon: SiBootstrap, color: "#7952B3" },
+      { name: "HTML5", Icon: SiHtml5, color: "#E34F26" },
+      { name: "CSS3", Icon: SiCss3, color: "#1572B6" },
+    ],
   },
   {
-    name: "NestJS",
-    icon: nestjs,
+    title: "Backend",
+    accent: "#915EFF",
+    skills: [
+      { name: "Node.js", Icon: SiNodedotjs, color: "#339933" },
+      { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
+      { name: "Express", Icon: SiExpress, color: "#ffffff" },
+      { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
+      { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+      { name: "REST APIs", Icon: FaServer, color: "#22d3ee" },
+      { name: "Microservices", Icon: FaCubes, color: "#915EFF" },
+      { name: "WebRTC", Icon: SiWebrtc, color: "#94a3b8" },
+      { name: "Socket.io", Icon: SiSocketdotio, color: "#ffffff" },
+      { name: "JWT", Icon: SiJsonwebtokens, color: "#e879f9" },
+    ],
   },
   {
-    name: "Express JS",
-    icon: express,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "PostgreSQL",
-    icon: postgresql,
-  },
-  {
-    name: "SQL",
-    icon: sql,
-  },
-  {
-    name: "JavaScript",
-    icon: javascript,
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Bootstrap",
-    icon: bootstrap,
-  },
-  {
-    name: "HTML 5",
-    icon: html,
-  },
-  {
-    name: "CSS 3",
-    icon: css,
-  },
-  {
-    name: "WebRTC",
-    icon: webrtc,
-  },
-  {
-    name: "Socket.io",
-    icon: socketio,
-  },
-  {
-    name: "REST APIs",
-    icon: restapi,
-  },
-  {
-    name: "Microservices",
-    icon: microservices,
-  },
-  {
-    name: "Git",
-    icon: git,
-  },
-  {
-    name: "Docker",
-    icon: docker,
-  },
-  {
-    name: "AWS",
-    icon: aws,
-  },
-  {
-    name: "CI/CD",
-    icon: cicd,
-  },
-  {
-    name: "JWT",
-    icon: jwt,
+    title: "DevOps & Tools",
+    accent: "#3b82f6",
+    skills: [
+      { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+      { name: "AWS", Icon: SiAmazon, color: "#FF9900" },
+      { name: "CI/CD", Icon: FaInfinity, color: "#22d3ee" },
+      { name: "Git", Icon: SiGit, color: "#F05032" },
+      { name: "Figma", Icon: SiFigma, color: "#F24E1E" },
+      { name: "Postman", Icon: SiPostman, color: "#FF6C37" },
+    ],
   },
 ];
 
@@ -362,57 +339,54 @@ const projects = [
     image: image,
     download_link: "https://play.google.com/store/apps/details?id=com.mataaftech.mataafpos",
   },
+  {
+    name: "Pixo – Private Photo Vault",
+    description:
+      "Pixo is a privacy-first mobile app that keeps your most personal photos, videos and files truly private — locked behind a 6-digit passcode and biometrics, hidden from your gallery, and even disguised as a fully working calculator. Built with React Native, it pairs a clean, modern UI with secure, encrypted cloud storage, giving users complete control over their private content.",
+    features: [
+      "Secure vault for photos, videos & files behind a 6-digit passcode",
+      "Instant unlock with fingerprint or face biometrics, plus auto-lock on exit",
+      "Calculator disguise — opens as a real calculator, hold '+' to reveal the vault",
+      "Disguise the app icon as Calculator, Notes or Photos for total discretion",
+      "Hide any file type — photos, videos, documents, PDFs & audio",
+      "Organise items into albums, mark favourites, and search & filter instantly",
+      "One-tap clean-up to remove originals from the device gallery",
+      "Encrypted cloud storage with email/Google sign-in and account recovery",
+    ],
+    tags: [
+      { name: "React Native", color: "blue-text-gradient" },
+      { name: "Biometric Auth", color: "green-text-gradient" },
+      { name: "Encryption", color: "pink-text-gradient" },
+      { name: "Cloud Storage", color: "orange-text-gradient" },
+    ],
+    image: pixo,
+    playStore: true,
+    download_link: "https://play.google.com/store/apps/details?id=com.pixovault.app",
+  },
 ];
 
 const experiences = [
   {
-    title: "Full Stack Developer",
+    title: "Full Stack & AI Developer",
     company_name: "Mataaf Technology | Remote",
     icon: mataaf,
     iconBg: "#FFFFFF",
     date: "01/2023 - Present",
     points: [
-      "Developed and maintained scalable full-stack web and mobile applications using React, Angular, Node.js, Express, MongoDB, and PostgreSQL.",
-      "Engineered real-time communication features utilizing WebRTC, enhancing user interaction and collaboration within applications.",
-      "Containerized applications using Docker and established CI/CD pipelines to automate testing and deployment on AWS, increasing deployment efficiency.",
-      "Designed and implemented backend services following a microservices architecture, improving system scalability and maintainability.",
-      "Integrated AI tools and chatbots to automate processes and provide advanced analytics, increasing overall application intelligence.",
-      "Utilized Git for version control in a collaborative team environment, following Agile methodologies to deliver high-quality software on time.",
+      "Built and shipped AI-powered features — integrating LLM APIs (OpenAI GPT, Claude, Gemini), chatbots, and RAG pipelines to automate workflows and deliver intelligent, context-aware experiences.",
+      "Developed and maintained scalable full-stack web and mobile applications using React, Next.js, Angular, React Native, Node.js, NestJS, Express, MongoDB, and PostgreSQL.",
+      "Engineered real-time communication features with WebRTC and Socket.io, powering live video calling and messaging at scale.",
+      "Containerized applications with Docker and set up CI/CD pipelines to automate testing and deployment on AWS, improving release velocity.",
+      "Designed backend services following a microservices architecture, improving system scalability and maintainability.",
+      "Collaborated in an Agile team using Git, delivering high-quality, production-ready software on time.",
     ],
   },
 ];
 
-// const testimonials = [
-//   {
-//     testimonial:
-//       "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-//     name: "Sara Lee",
-//     designation: "CFO",
-//     company: "Acme Co",
-//     image: "https://randomuser.me/api/portraits/women/4.jpg",
-//   },
-//   {
-//     testimonial:
-//       "I've never met a web developer who truly cares about their clients' success like Rick does.",
-//     name: "Chris Brown",
-//     designation: "COO",
-//     company: "DEF Corp",
-//     image: "https://randomuser.me/api/portraits/men/5.jpg",
-//   },
-//   {
-//     testimonial:
-//       "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-//     name: "Lisa Wang",
-//     designation: "CTO",
-//     company: "456 Enterprises",
-//     image: "https://randomuser.me/api/portraits/women/6.jpg",
-//   },
-// ];
-
 export {
+  stats,
   services,
-  technologies,
+  skillGroups,
   experiences,
-  //  testimonials,
   projects,
 };

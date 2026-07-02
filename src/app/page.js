@@ -1,25 +1,18 @@
 import { About, Contact, Hero, Navbar, Tech, Experience, Education, Works } from "@/components";
-import dynamic from "next/dynamic";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 export default function Home() {
-  const StarsCanvas = dynamic(() => import("@/components/canvas/Stars"));
   return (
-    <div className="  ">
+    <main className="relative overflow-x-hidden">
+      <AnimatedBackground />
       <Navbar />
       <Hero />
-      <div className="bg-primary relative z-[1] h-full ">
-        <div className=" relative z-[1]">
-          <About />
-          <div className=" overflow-hidden">
-            <Tech />
-          </div>
-          <Experience />
-          <Education />
-          <Works />
-          <Contact />
-        </div>
-        <StarsCanvas />
-      </div>
-    </div>
+      <About />
+      <Tech />
+      <Experience />
+      <Education />
+      <Works />
+      <Contact />
+    </main>
   );
 }

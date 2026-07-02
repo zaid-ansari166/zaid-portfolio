@@ -1,12 +1,10 @@
-'use client'
-import React from 'react'
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import { navLinks } from '@/constants/constants'
-import { styles } from '@/styles'
-import { menu, close } from '@/assets'
-import logo from '@/assets/logo.png'
-import Image from 'next/image'
+"use client";
+import React from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { navLinks } from "@/constants/constants";
+import { styles } from "@/styles";
+import { HiMenu, HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -14,84 +12,90 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
-      className={`${
-        styles.paddingX
-      } w-full flex items-center py-4 fixed top-0 z-20 ${
-        scrolled ? " bg-primary  rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80 " : "bg-transparent"
+      className={`${styles.paddingX} w-full flex items-center py-4 fixed top-0 z-30 transition-all duration-300 ${
+        scrolled ? "glass !py-3" : "bg-transparent"
       }`}
     >
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
+      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
-          href='/'
-          className='flex items-center gap-2'
+          href="/"
+          className="flex items-center gap-3"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
-          <Image src={logo} alt='logo' className='w-20 h-20 object-contain' />
-          <p className='text-white text-[35px] font-bold cursor-pointer flex relative right-6 '>
-            AID &nbsp;
-            <span className='sm:block hidden'> </span>
-          </p>
+          <span className="w-11 h-11 rounded-xl bg-gradient-to-br from-accent-violet via-accent-purple to-accent-cyan flex items-center justify-center font-display font-black text-white text-[18px] shadow-glow">
+            ZA
+          </span>
+          <span className="text-ink text-[22px] font-bold font-display hidden sm:block">
+            Zaid<span className="text-gradient"> Ansari</span>
+          </span>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+        <ul className="list-none hidden sm:flex flex-row gap-9 items-center">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
-              className={`${
-                active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              className={`relative text-[16px] font-medium cursor-pointer transition-colors ${
+                active === nav.title ? "text-ink" : "text-secondary hover:text-ink"
+              }`}
               onClick={() => setActive(nav.title)}
             >
-              <a data-scroll-to href={`#${nav.id}`}>{nav.title}</a>
+              <a data-scroll-to href={`#${nav.id}`}>
+                {nav.title}
+              </a>
+              {active === nav.title && (
+                <span className="absolute -bottom-1.5 left-0 w-full h-0.5 rounded-full bg-accent-gradient" />
+              )}
             </li>
           ))}
+          <a
+            href="#contact"
+            onClick={() => setActive("Contact")}
+            className="glass rounded-full px-5 py-2 text-ink font-semibold hover:border-accent-cyan/60 transition-colors"
+          >
+            Let&apos;s talk
+          </a>
         </ul>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
-          <Image
-            src={toggle ? close : menu}
-            alt='menu'
-            className='w-[28px] h-[28px] object-contain'
+        {/* Mobile */}
+        <div className="sm:hidden flex flex-1 justify-end items-center">
+          <button
+            aria-label="Toggle menu"
             onClick={() => setToggle(!toggle)}
-          />
+            className="text-ink"
+          >
+            {toggle ? <HiX size={28} /> : <HiMenu size={28} />}
+          </button>
 
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            } p-6 glass absolute top-20 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-2xl`}
           >
-            <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
+            <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
+                  className={`font-medium cursor-pointer text-[16px] ${
+                    active === nav.title ? "text-ink" : "text-secondary"
                   }`}
                   onClick={() => {
                     setToggle(!toggle);
                     setActive(nav.title);
                   }}
                 >
-                  <a data-scroll-to href={`#${nav.id}`}>{nav.title}</a>
+                  <a data-scroll-to href={`#${nav.id}`}>
+                    {nav.title}
+                  </a>
                 </li>
               ))}
             </ul>

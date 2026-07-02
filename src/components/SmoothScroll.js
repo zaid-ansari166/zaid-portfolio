@@ -4,14 +4,11 @@ import { useEffect } from "react";
 const SmoothScroll = () => {
 
   useEffect(() => {
-    (
-      async () => {
-        const LocomotiveScroll = (await import('locomotive-scroll')).default
-        const scroll = new LocomotiveScroll();
-      }
-    )()
-  }, [])
+    // Native CSS smooth scrolling (set in globals.css) is used instead of
+    // locomotive-scroll, which transformed the page and broke the fixed
+    // navbar + fixed aurora background in the new design.
+  }, []);
 
-  return;
+  return null;
 };
 export default SmoothScroll;

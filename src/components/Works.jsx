@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -6,12 +6,10 @@ import { styles } from "../styles";
 import { SectionWrapper } from "./hoc";
 import { projects } from "../constants/constants";
 import { fadeIn, textVariant } from "../utils/motion";
-import { HiLink } from "react-icons/hi";
+import { HiLink, HiDownload, HiVolumeUp, HiVolumeOff, HiCheckCircle, HiLockClosed } from "react-icons/hi";
 import { ImGithub } from "react-icons/im";
-import { HiDownload } from "react-icons/hi";
-import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
+import { FaGooglePlay } from "react-icons/fa";
 import Image from "next/image";
-import color_sharp from "../assets/color_sharp.png";
 
 const ProjectCard = ({
   index,
@@ -25,6 +23,7 @@ const ProjectCard = ({
   features,
   live_link,
   download_link,
+  playStore,
 }) => {
   const refLiveLink = React.useRef(null);
   const refSourceCodeLink = React.useRef(null);
@@ -38,27 +37,18 @@ const ProjectCard = ({
   const onMouseMoveLiveLink = (e) => {
     const { clientX, clientY } = e;
     const { width, height, left, top } = refLiveLink.current.getBoundingClientRect();
-    const x = clientX - (left + width / 2);
-    const y = clientY - (top + height / 2);
-    setPositionLiveLink({ x, y });
+    setPositionLiveLink({ x: clientX - (left + width / 2), y: clientY - (top + height / 2) });
   };
-
   const onMouseMoveSourceCodeLink = (e) => {
     const { clientX, clientY } = e;
     const { width, height, left, top } = refSourceCodeLink.current.getBoundingClientRect();
-    const x = clientX - (left + width / 2);
-    const y = clientY - (top + height / 2);
-    setPositionSourceCodeLink({ x, y });
+    setPositionSourceCodeLink({ x: clientX - (left + width / 2), y: clientY - (top + height / 2) });
   };
-
   const onMouseMoveDownloadLink = (e) => {
     const { clientX, clientY } = e;
     const { width, height, left, top } = refDownloadLink.current.getBoundingClientRect();
-    const x = clientX - (left + width / 2);
-    const y = clientY - (top + height / 2);
-    setPositionDownloadLink({ x, y });
+    setPositionDownloadLink({ x: clientX - (left + width / 2), y: clientY - (top + height / 2) });
   };
-
   const onMouseLeave = () => {
     setPositionLiveLink({ x: 0, y: 0 });
     setPositionSourceCodeLink({ x: 0, y: 0 });
@@ -66,141 +56,152 @@ const ProjectCard = ({
   };
 
   const getYouTubeEmbedUrl = (url, muted) => {
-    const videoId = url.split('v=')[1]?.split('&')[0];
+    const videoId = url.split("v=")[1]?.split("&")[0];
     return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&mute=${muted ? 1 : 0}&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&fs=0&iv_load_policy=3&disablekb=1&enablejsapi=1&playsinline=1`;
   };
 
   const toggleMute = () => {
     setIsMuted(!isMuted);
     if (iframeRef.current) {
-      const newUrl = getYouTubeEmbedUrl(video_url, !isMuted);
-      iframeRef.current.src = newUrl;
+      iframeRef.current.src = getYouTubeEmbedUrl(video_url, !isMuted);
     }
   };
 
+  const btnBase =
+    "glass w-12 h-12 rounded-full flex items-center justify-center text-accent-violet hover:text-accent-brown hover:border-accent-violet/60 transition-colors";
+  const spring = { type: "spring", stiffness: 130, damping: 50, mass: 0.1 };
 
   return (
     <motion.div
-      variants={fadeIn("up", "spring", index * 0.3, 0.75)}
+      variants={fadeIn("up", "spring", index * 0.2, 0.75)}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
-      className='bg-tertiary bg-opacity-70 p-5 rounded-2xl gap-4'
+      viewport={{ once: true, amount: 0.2 }}
+      className="glass-card rounded-3xl p-5 sm:p-6"
     >
-      <h3 className='text-white font-bold text-[28px] flex gap-2 items-center my-2 '>{name}<HiLink size={15} /></h3>
-      <div className='lg:flex gap-10 lg:flex-row lg:justify-between lg:items-center'>
-        <div className='lg:w-[90%] lg:h-[90%] w-full h-full'>
-          <div className='relative flex justify-between transition-all duration-500'>
+      <h3 className="text-ink font-bold text-[24px] sm:text-[28px] flex gap-2 items-center my-2 font-display">
+        {name}
+        <HiLink size={16} className="text-accent-cyan" />
+      </h3>
+
+      <div className="lg:flex gap-10 lg:flex-row lg:justify-between lg:items-center">
+        <div className="lg:w-[90%] lg:h-[90%] w-full h-full">
+          <div className="relative flex justify-between transition-all duration-500">
             {video_url ? (
               <>
                 <iframe
                   ref={iframeRef}
                   src={getYouTubeEmbedUrl(video_url, isMuted)}
-                  alt='project_video'
-                  className='h-full w-full object-cover rounded-2xl aspect-video'
+                  title={`${name} video`}
+                  className="h-full w-full object-cover rounded-2xl aspect-video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
                 <button
                   onClick={toggleMute}
-                  className="absolute bottom-4 right-4 bg-black bg-opacity-70 hover:bg-opacity-90 text-white p-3 rounded-full transition-all duration-200 z-10"
+                  aria-label={isMuted ? "Unmute" : "Mute"}
+                  className="absolute bottom-4 right-4 glass hover:border-accent-violet/40 text-ink p-3 rounded-full transition-all duration-200 z-10"
                 >
-                  {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
+                  {isMuted ? <HiVolumeOff size={22} /> : <HiVolumeUp size={22} />}
                 </button>
               </>
             ) : website_url ? (
               <>
                 <iframe
                   src={website_url}
-                  alt='project_website'
-                  className='hidden lg:block h-full w-full object-cover rounded-2xl aspect-video'
+                  title={`${name} website`}
+                  className="hidden lg:block h-full w-full object-cover rounded-2xl aspect-video"
                   allowFullScreen
                 />
                 <img
                   src={image.src}
-                  alt='project_image'
-                  className='lg:hidden h-full w-full object-cover rounded-2xl'
+                  alt={name}
+                  className="lg:hidden h-full w-full object-cover rounded-2xl"
                 />
               </>
+            ) : playStore ? (
+              <a
+                href={download_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group h-full w-full aspect-video rounded-2xl flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-accent-violet/20 via-accent-purple/10 to-accent-cyan/20 border border-accent-bronze/30 hover:border-accent-violet/60 transition-colors"
+              >
+                {image && (
+                  <img
+                    src={image.src}
+                    alt={`${name} icon`}
+                    className="w-24 h-24 rounded-[22px] object-contain shadow-glow group-hover:scale-105 transition-transform duration-300"
+                  />
+                )}
+                <span className="font-display font-bold text-ink text-[22px]">
+                  {name.split("–")[0].trim()}
+                </span>
+                <span className="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 text-ink text-sm font-semibold group-hover:border-accent-violet/60 transition-colors">
+                  <FaGooglePlay className="text-accent-violet" size={18} /> View on Google Play
+                </span>
+              </a>
+            ) : image ? (
+              <img src={image.src} alt={name} className="h-full w-full object-cover rounded-2xl" />
             ) : (
-              <img
-                src={image.src}
-                alt='project_image'
-                className=' h-full w-full object-cover rounded-2xl'
-              />
+              <div className="h-full w-full aspect-video rounded-2xl flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-accent-violet/25 via-accent-purple/15 to-accent-cyan/25 border border-accent-bronze/25">
+                <HiLockClosed size={44} className="text-accent-violet" />
+                <span className="font-display font-bold text-ink text-[22px]">{name.split("–")[0].trim()}</span>
+              </div>
             )}
           </div>
         </div>
-        <div className='flex sm:flex lg:flex-col gap-8 mt-3'>
+
+        <div className="flex sm:flex lg:flex-col gap-5 mt-4 lg:mt-0">
           {live_link && (
             <motion.div ref={refLiveLink} onMouseMove={onMouseMoveLiveLink} onMouseLeave={onMouseLeave}
-              animate={{ x: positionLiveLink.x, y: positionLiveLink.y }}
-              transition={{
-                type: 'spring',
-                stiffness: 130,
-                damping: 50,
-                mass: 0.1,
-              }}>
-              <button onClick={() => window.open(live_link, "_blank")} className=" text-gradient lg:w-[10%] flex justify-center">
-                <p className=" font-semibold text-sm lg:text-[24px] hover:scale-105 transition-all duration-200 flex gap-2 items-center p-3 border-2 rounded-full border-secondary text-[#915EFF] ">
-                  <HiLink size={30} className=" " />
-                </p>
+              animate={{ x: positionLiveLink.x, y: positionLiveLink.y }} transition={spring}>
+              <button onClick={() => window.open(live_link, "_blank")} aria-label="Live link" className={btnBase}>
+                <HiLink size={26} />
               </button>
             </motion.div>
           )}
           {source_code_link && (
             <motion.div ref={refSourceCodeLink} onMouseMove={onMouseMoveSourceCodeLink} onMouseLeave={onMouseLeave}
-              animate={{ x: positionSourceCodeLink.x, y: positionSourceCodeLink.y }}
-              transition={{
-                type: 'spring',
-                stiffness: 130,
-                damping: 50,
-                mass: 0.1,
-              }}>
-              <button onClick={() => window.open(source_code_link, "_blank")} className=" text-gradient lg:w-[10%] flex justify-center">
-                <p className="text-white font-semibold text-sm lg:text-[24px] hover:scale-105 transition-all duration-200 flex gap-2 items-center p-3 border-2 rounded-full border-secondary hover:bg-black ">
-                  <ImGithub size={30} className=" text-[#915EFF]" />
-                </p>
+              animate={{ x: positionSourceCodeLink.x, y: positionSourceCodeLink.y }} transition={spring}>
+              <button onClick={() => window.open(source_code_link, "_blank")} aria-label="Source code" className={btnBase}>
+                <ImGithub size={24} />
               </button>
             </motion.div>
           )}
           {download_link && (
             <motion.div ref={refDownloadLink} onMouseMove={onMouseMoveDownloadLink} onMouseLeave={onMouseLeave}
-              animate={{ x: positionDownloadLink.x, y: positionDownloadLink.y }}
-              transition={{
-                type: 'spring',
-                stiffness: 130,
-                damping: 50,
-                mass: 0.1,
-              }}>
-              <button onClick={() => window.open(download_link, "_blank")} className=" text-gradient lg:w-[10%] flex justify-center">
-                <p className="text-white font-semibold text-sm lg:text-[24px] hover:scale-105 transition-all duration-200 flex gap-2 items-center p-3 border-2 rounded-full border-secondary hover:bg-black ">
-                  <HiDownload size={30} className=" text-[#915EFF]" />
-                </p>
+              animate={{ x: positionDownloadLink.x, y: positionDownloadLink.y }} transition={spring}>
+              <button onClick={() => window.open(download_link, "_blank")} aria-label="Download" className={btnBase}>
+                <HiDownload size={26} />
               </button>
             </motion.div>
           )}
         </div>
       </div>
 
-      <div>
-        <div className='mt-5'>
-          <p className='mt-2 text-gray-300 text-[19px] font-semibold mb-2'>{description}</p>
-          <ul className=" list-disc text-sm text-gray-300 ml-3 h-0 overflow-hidden">
-            {features.map((feature, index) => (
-              <li key={index} className=" mb-2">{feature}</li>
+      <div className="mt-5">
+        <p className="text-ink-soft text-[16px] sm:text-[18px] leading-[28px]">{description}</p>
+
+        {features?.length > 0 && (
+          <ul className="mt-5 grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+            {features.map((feature, i) => (
+              <li key={i} className="flex items-start gap-2 text-ink-soft text-[14px] leading-[22px]">
+                <HiCheckCircle size={18} className="text-accent-cyan shrink-0 mt-0.5" />
+                <span>{feature}</span>
+              </li>
             ))}
           </ul>
-        </div>
+        )}
 
-        <div className='mt-4 flex flex-wrap gap-3'>
+        <div className="mt-6 flex flex-wrap gap-2.5">
           {tags.map((tag) => (
-            <p title={tag.name}
+            <span
               key={`${name}-${tag.name}`}
-              className={`text-[17px] font-semibold ${tag.color}`}
+              title={tag.name}
+              className="glass rounded-full px-3 py-1 text-[14px] font-semibold text-ink/85"
             >
-              #{tag.name}
-            </p>
+              <span className={tag.color}>#{tag.name}</span>
+            </span>
           ))}
         </div>
       </div>
@@ -211,27 +212,25 @@ const ProjectCard = ({
 const Works = () => {
   return (
     <>
-      < div className='relative'>
-        <div>
-          <p id="work" className={`${styles.sectionSubText} `}>My work</p>
-          <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
-        </div>
+      <motion.div variants={textVariant()}>
+        <p className={styles.sectionSubText}>My work</p>
+        <h2 className={styles.sectionHeadText}>Projects.</h2>
+      </motion.div>
 
-        <div className='w-full flex'>
-          <motion.p
-            className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
-          >
-            Following projects showcases my skills and experience through
-            real-world examples of my work. Each project is briefly described with
-            links to code repositories and live demos in it. It reflects my
-            ability to solve complex problems, work with different technologies,
-            and manage projects effectively.
-          </motion.p>
-          <Image src={color_sharp} alt="color-sharp" className="absolute z-[-1] h-80 -left-60 w-screen -top-20" />
-        </div>
+      <div className="w-full flex">
+        <motion.p
+          variants={fadeIn("", "", 0.1, 1)}
+          className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
+        >
+          A selection of real-world products I&apos;ve designed, built, and
+          shipped — from AI-powered apps to real-time platforms and mobile apps
+          live on the Play Store. Each one reflects how I solve complex problems
+          across the full stack.
+        </motion.p>
       </div>
 
-      <div className='mt-20 flex flex-col gap-7'>
+      <span className="hash-span" id="work">&nbsp;</span>
+      <div className="mt-16 flex flex-col gap-8">
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
