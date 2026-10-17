@@ -1,12 +1,12 @@
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/content/site";
 
+// Served at /robots.txt.
 export default function robots() {
+  const base = siteConfig.url.replace(/\/+$/, "");
+
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
-    sitemap: `${siteConfig.url}/sitemap.xml`,
-    host: siteConfig.url,
+    rules: { userAgent: "*", allow: "/" },
+    sitemap: `${base}/sitemap.xml`,
+    host: base,
   };
 }

@@ -1,17 +1,18 @@
-import { About, Contact, Hero, Navbar, Tech, Experience, Education, Works } from "@/components";
-import AnimatedBackground from "@/components/AnimatedBackground";
+import Hero from "@/components/sections/Hero";
+import Work from "@/components/sections/Work";
+import About from "@/components/sections/About";
+import Expertise from "@/components/sections/Expertise";
+import Experience from "@/components/sections/Experience";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
-    <main className="relative overflow-x-hidden">
-      <AnimatedBackground />
-      <Navbar />
+    <main id="main" tabIndex={-1} className="outline-none">
       <Hero />
+      <Work />
       <About />
-      <Tech />
+      <Expertise />
       <Experience />
-      <Education />
-      <Works />
       <Contact />
     </main>
   );

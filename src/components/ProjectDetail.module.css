@@ -1,0 +1,15 @@
+/* ProjectDetail — the few rules Tailwind can't express cleanly. Tokens only. */
+
+/* Back link: the arrow sits first, so it nudges left (the global .link-arrow nudges right). */
+a.back:hover svg,
+a.back:focus-visible svg {
+  transform: translateX(-4px);
+}
+
+/* In-page index sticks below the fixed header on large screens. */
+@media (min-width: 1024px) {
+  .toc {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+  }
+}
